@@ -15,14 +15,24 @@ import tree.model.ComputerDirectoryTreeModel;
  */
 
 @SuppressWarnings("serial")
-public class JFileTreeIE extends JFrame {
-    private JFileTreeIE() {
-        super("Directory Explorer");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout());
-        createPanel();
-        setSize(500, 800);
-        setVisible(true);
+public class JFileTreeIE extends JPanel {
+    public JFileTreeIE() {
+        // super("Directory Explorer");
+        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // setLayout(new GridLayout());
+        //createPanel();
+
+        DesignTree tree = new DesignTree(new ComputerDirectoryTreeModel());
+        JScrollPane scroll = new JScrollPane(tree);
+        JPanel panel = new JPanel(new GridLayout(1, 1));
+        panel.add(scroll);
+        this.add(panel);
+        
+
+
+        // setSize(500, 800);
+        // setVisible(true);
+        
     }
 
     private void createPanel() {
@@ -30,10 +40,10 @@ public class JFileTreeIE extends JFrame {
         JScrollPane scroll = new JScrollPane(tree);
         JPanel panel = new JPanel(new GridLayout(1, 1));
         panel.add(scroll);
-        getContentPane().add(panel);
+        //getContentPane().add(panel);
     }
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> new JFileTreeIE());
-    }
+    // public static void main(String[] args) {
+    //     EventQueue.invokeLater(() -> new JFileTreeIE());
+    // }
 }
