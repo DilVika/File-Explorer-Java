@@ -66,9 +66,9 @@ public class FileNameRenderer extends DefaultTreeCellRenderer {
             ((JLabel) c).setText("<html><p style=\"padding: 3px 0;\">" + value + "<p/>");
 
         if(value instanceof DefaultMutableTreeNode)
-            setIcon(new ImageIcon("resources/root.png"));
+            setIcon(new ImageIcon("resources/folder.png"));
         else if(expanded && holder != null && hasDirectory(holder))
-            setIcon(new ImageIcon("resources/open-folder.png"));
+            setIcon(new ImageIcon("resources/folder.png"));
         else
             setIcon(new ImageIcon("resources/folder.png"));
 

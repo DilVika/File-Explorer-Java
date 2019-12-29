@@ -2,8 +2,10 @@ package mainWindow;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
-import tree.JFileTreeIE;
+import tree.design.DesignTree;
+import tree.model.ComputerDirectoryTreeModel;
 
 public class FileExplorer {
 
@@ -17,7 +19,7 @@ public class FileExplorer {
     private JCheckBoxMenuItem iconCheckbox;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
+        SwingUtilities.invokeLater(() -> {
             try {
                 FileExplorer window = new FileExplorer();
                 window.frame.setVisible(true);
@@ -150,26 +152,20 @@ public class FileExplorer {
         var gridbagConstraint = new GridBagConstraints();
         gridbagConstraint.gridx = 0;
         gridbagConstraint.gridy = 0;
-        gridbagConstraint.weightx = 0;
-        gridbagConstraint.weighty = 1;
+        gridbagConstraint.weightx = 2;
+        gridbagConstraint.weighty = 9;
 
-        gridbagConstraint.fill = GridBagConstraints.VERTICAL;
+        gridbagConstraint.fill = GridBagConstraints.BOTH;
 
-        var leftPanel = new JPanel();
-        frame.getContentPane().add(leftPanel, gridbagConstraint);
+        DesignTree tree = new DesignTree(new ComputerDirectoryTreeModel());
+        var scroll = new JScrollPane(tree);
+
+        frame.getContentPane().add(scroll, gridbagConstraint);
 
         gridbagConstraint.gridx = 1;
-        gridbagConstraint.weightx = 1;
+        gridbagConstraint.weightx = 3;
         var rightPanel = new JPanel();
         frame.getContentPane().add(rightPanel, gridbagConstraint);
-
-        
-
-        JFileTreeIE fileTree = new JFileTreeIE();
-        leftPanel.add(fileTree);
- 
-         
-        
        
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
 
@@ -183,7 +179,5 @@ public class FileExplorer {
         resultTextPane.setContentType("fdfdfddff");
         resultTextPane.setBorder(BorderFactory.createLineBorder(Color.black));
         rightPanel.add(resultTextPane);
-
-       
     }
 }
