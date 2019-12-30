@@ -7,6 +7,7 @@ import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 
 import tree.ui.TreeHandleUI;
+import Utils.*;
 
 /*
  * Class which controls expand / collapse handle animations
@@ -35,8 +36,13 @@ public class MouseHandler extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent e) {
         //Clears selection when mouse is pressed outside of on of the nodes
-        if((SwingUtilities.isLeftMouseButton(e) || SwingUtilities.isRightMouseButton(e))
-                && t.getRowForLocation(e.getX(), e.getY()) == -1)
+        if ((SwingUtilities.isLeftMouseButton(e) || SwingUtilities.isRightMouseButton(e))
+                && t.getRowForLocation(e.getX(), e.getY()) == -1) {
             t.clearSelection();
+            GlobalMap.store.remove(GlobalMap.SELECTED_DIR);
+        } else {
+            var selected = t.getPathForLocation(e.getX(), e.getY()).getLastPathComponent().toString();
+            GlobalMap.store.put(GlobalMap.SELECTED_DIR, selected);
+        }
     }
 }

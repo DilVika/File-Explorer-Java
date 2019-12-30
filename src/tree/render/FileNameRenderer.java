@@ -14,10 +14,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-/*
- * This class handles the rendering of the tree nodes.
- * This includes handling rollover functions, and naming conventions.
- */
+
 
 @SuppressWarnings("serial")
 public class FileNameRenderer extends DefaultTreeCellRenderer {
@@ -79,6 +76,9 @@ public class FileNameRenderer extends DefaultTreeCellRenderer {
     //This determines if a handle will be painted next to
     //the node
     private boolean hasDirectory(File path) {
+        if (path == null) {
+            return false;
+        }
         for(File temp : path.listFiles()) {
             if(temp.isDirectory() && !temp.isHidden())
                 if(temp.listFiles() != null)

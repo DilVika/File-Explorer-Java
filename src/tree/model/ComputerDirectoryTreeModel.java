@@ -9,13 +9,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 
-/*
- * Class that automatically generates the tree
- * so that it contains all directories accessible drives.
- * 
- * Does not access hidden directories or directories
- * that require administrator privileges.
- */
+
 
 public class ComputerDirectoryTreeModel implements TreeModel {
     private DefaultMutableTreeNode root = new DefaultMutableTreeNode();
@@ -33,8 +27,7 @@ public class ComputerDirectoryTreeModel implements TreeModel {
         }
     }
 
-    //Checks whether the drive can be added
-    //Only adds local drives or USBs
+
     private boolean addable(File path) {
         FileSystemView fsv = FileSystemView.getFileSystemView();
         String type = fsv.getSystemTypeDescription(path);
